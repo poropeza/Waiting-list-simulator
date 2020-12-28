@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<BFSM>
+
+
+	<GoalSet id="0">
+		<!-- Entrada al my little ceasars    x="-8.09" y="-46.23"     min_x="-80" min_y="-216" max_x="18" max_y="-85"-->
+		<Goal capacity="150" id="0" type="point" x="-8.09" y="-46.23" weight="1.00"  />
+	</GoalSet>
+
+	<GoalSet id="1">
+		<!-- estar parado donde se atiende-->
+		<Goal capacity="10000" id="0" type="point" weight="1.00" x="-10.12" y="37.88"/>
+	</GoalSet>
+
+	<GoalSet id="2">
+		<!-- izq-->
+		<Goal capacity="10000" id="0" type="point" weight="1.00" x="-34.54" y="37.20"/>
+	</GoalSet>
+
+	<GoalSet id="3">
+		<!-- salir   x="-37.93" y="-46.23" -->
+        <Goal capacity="10000" id="0" type="AABB" weight="1.00" min_x="-55" min_y="-54" max_x="-30" max_y="-25"/>
+	</GoalSet>
+
+	<GoalSet id="4">
+		<!-- terminar-->
+        <Goal capacity="10000" id="0" type="point" weight="1.00" x="-350.42" y="-277.85"/>
+	</GoalSet>
+	
+	
+	<!-- entrar al lugar-->
+	<State name="entrar" final="0">
+		<GoalSelector type="explicit" goal_set="0" goal="0" per_agent="1" persistent="1" />
+		<VelComponent type="road_map" file_name="cesars.txt"/>
+	</State>
+
+
+
+	<!--a ser atendido-->
+	<State name="atendido" final="0">
+		<GoalSelector type="explicit" goal_set="1" goal="0" per_agent="1" persistent="1"/>
+		<VelComponent type="road_map" file_name="cesars.txt"/>
+		<!--<Action type="set_property" property="pref_speed" dist="c" value="1.04" exit_reset="1"/>
+		<Action type="offset_property" property="priority" dist="c" value="0.15" exit_reset="1"/>-->
+	</State>
+	
+	<!-- se desplaza hacia la izquiera para evacuar-->
+	<State name="izq" final="0">
+		<GoalSelector type="explicit" goal_set="2" goal="0" per_agent="1" persistent="1" />
+		<VelComponent type="road_map" file_name="cesars.txt"/>
+	</State>
+
+	<!--llega a la puerta para salir-->
+	<State name="salida" final="0">
+		<GoalSelector type="explicit" goal_set="3" goal="0" per_agent="1" persistent="1" />
+		<VelComponent type="road_map" file_name="cesars.txt"/>
+		<!--<Action type="set_property" property="pref_speed" dist="c" value="1.04" exit_reset="1"/>
+		<Action type="offset_property" property="priority" dist="c" value="0.15" exit_reset="1"/>-->
+	</State>
+
+	<!--se va-->
+	<State name="seva" final="0">
+		<GoalSelector type="explicit" goal_set="4" goal="0" per_agent="1" persistent="1" />
+		<VelComponent type="road_map" file_name="cesars.txt"/>
+		<!--<Action type="set_property" property="pref_speed" dist="c" value="1.04" exit_reset="1"/>
+		<Action type="offset_property" property="priority" dist="c" value="0.15" exit_reset="1"/>-->
+	</State>
+	
+	<!-- se acabó-->
+	<State name="terminar" final="1">
+		<GoalSelector type="identity" persistent="1" />
+		<VelComponent type="zero" />
+	</State>
+
+
+	
+	<!-- Transitions-->
+	<Transition from="entrar" to="atendido" >
+		<Condition type="goal_reached" distance="0.2" />
+	</Transition>
+	<Transition from="atendido" to="izq" >
+		<Condition type="goal_reached" distance="0.2" />
+	</Transition>
+	<Transition from="izq" to="salida" >
+		<Condition type="goal_reached" distance="0.2" />
+	</Transition>
+	<Transition from="salida" to="seva" >
+		<Condition type="goal_reached" distance="0.05" />
+	</Transition>
+	<Transition from="seva" to="terminar" >
+		<Condition type="goal_reached" distance="0.05" />
+	</Transition>
+	
+</BFSM>

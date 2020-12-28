@@ -1,0 +1,21 @@
+ingresar a CMD (línea de consola)
+
+ubicarse en la ruta donde se encuentre esta carpeta descomprimida y entrar
+
+entrar a Menge-master
+
+entrar a Exe
+
+copiar y pegar lo siguiente...
+
+menge.exe -p ../examples/colas/loadBack.xml
+
+y a continuación darle omitir
+
+ya aparece la pa venta de simulación
+
+con shift presionado y click derecho presionado moviendo el mouse hacia arriba para hacer (zoom out) y ver la escena
+
+con la tecla de espacio, podrás iniciar la simulación
+
+al concluir, podrás ver en la carpeta Exe un archivo .txt que se creó con el nombre SimulacionDeColas.txt, el cual tiene la tabla de simulación

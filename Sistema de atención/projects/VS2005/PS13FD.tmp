@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <MengeSrc>$(SolutionDir)..\..\..\src\Menge\</MengeSrc>
+    <MengeLib>$(SolutionDir)..\Menge\build\lib</MengeLib>
+    <PluginSrc>$(SolutionDir)..\..\..\src\Plugins</PluginSrc>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+    <_PropertySheetDisplayName>pedMacros</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="MengeSrc">
+      <Value>$(MengeSrc)</Value>
+    </BuildMacro>
+    <BuildMacro Include="MengeLib">
+      <Value>$(MengeLib)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PluginSrc">
+      <Value>$(PluginSrc)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
